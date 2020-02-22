@@ -1,4 +1,4 @@
-'''defines URL shemes for learning_logs'''
+'''defines URL schemes for learning_logs'''
 from django.urls import path
 from . import views
 
