@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 
 def login_user(request):
 	'''user enter by username and password'''
@@ -24,6 +24,25 @@ def logout_user(request):
 	'''user finishes work with the app'''
 	logout(request)
 	return HttpResponseRedirect(reverse('learning_logs:index'))
+
+def register_user(request):
+	'''register a new user'''
+	if request.method != 'POST':
+		#returns blank registration form
+		form = RegisterForm()
+	else:
+		#handling of the registration form
+		form = RegisterForm(data=request.POST)
+		if form.is_valid():
+			new_user = form.save()
+			#authentication and entering of the new user
+			authenticated_user = authenticate(username=new_user.username,
+				password=request.POST['password1'])
+			login(request, authenticated_user)
+			return HttpResponseRedirect(reverse('learning_logs:index'))
+
+	context = {'form': form}
+	return render(request, 'users/register.html', context)
 
 
 

@@ -12,7 +12,10 @@
 		<p>Hello, {{ user.username }}</p>
 		<a href="{% url 'users:logout_user' %}">log out</a>
 		{% else %}
-		<p><a href="{% url 'users:login_user' %}">log in</a></p>
+		<p>
+			<a href="{% url 'users:register_user' %}">register</a> - 
+			<a href="{% url 'users:login_user' %}">log in</a>
+		</p>
 		{% endif %}
 	</h1>
 	{% block content %} {% endblock content %}
