@@ -141,7 +141,8 @@ if os.getcwd() == '/app':
     #title 'X-Forwarded-Proto' for request.is_secure()
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     #All host titles are available
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['make-your-entries.herokuapp.com']
+    DEBUG = False
     #Static resources configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
