@@ -138,11 +138,11 @@ if os.getcwd() == '/app':
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
     }
-#title 'X-Forwarded-Proto' for request.is_secure()
+    #title 'X-Forwarded-Proto' for request.is_secure()
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#All host titles are available
+    #All host titles are available
     ALLOWED_HOSTS = ['*']
-#Static resources configuration
+    #Static resources configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
     STATICFILES_DIRS = (
