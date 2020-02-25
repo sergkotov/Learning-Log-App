@@ -1,0 +1,2 @@
+This text file is for including into a project catalog lerning-log/static
+Django collects static files and put them in this directory
