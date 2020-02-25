@@ -1,23 +1,69 @@
+{% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Learning Log</title>
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
 </head>
 <body>
-	<h1>
-		<a href="{% url 'learning_logs:index' %}">Learning Log</a> - 
-		<a href="{% url 'learning_logs:topics' %}">Topics</a> -
-		{% if user.is_authenticated %}
-		<p>Hello, {{ user.username }}</p>
-		<a href="{% url 'users:logout_user' %}">log out</a>
-		{% else %}
-		<p>
-			<a href="{% url 'users:register_user' %}">register</a> - 
-			<a href="{% url 'users:login_user' %}">log in</a>
-		</p>
-		{% endif %}
-	</h1>
-	{% block content %} {% endblock content %}
+	<!-- navigation panel -->
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar"
+						aria-expanded="false" aria-controls="navbar">
+					&#9776;							
+				</button>
+				<a href="{% url 'learning_logs:index' %}" class="navbar-brand">
+					Learning Log
+				</a>
+			</div>
+
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="{% url 'learning_logs:topics' %}">Topics</a>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					{% if user.is_authenticated %}
+					<li>
+						<a>
+							Hello, {{ user.username }}.
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'users:logout_user' %}">log out</a>
+					</li>
+					{% else %}
+					<li>
+						<a href="{% url 'users:register_user' %}">register</a>
+					</li>
+					<li>
+						<a href="{% url 'users:login_user' %}">log in</a>
+					</li>
+					{% endif %}
+				</ul>
+			</div> <!-- /.nav-collapse -->
+
+			<div class="container">
+				<div class="page-header">
+					{% block header %} {% endblock header %}
+				</div>
+				<div>
+					{% block content %} {% endblock content %}
+				</div>
+			</div><!-- /.container -->
+
+		</div>
+	</nav>
+
 </body>
 </html>

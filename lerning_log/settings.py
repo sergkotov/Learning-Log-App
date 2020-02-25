@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     #my apps
     'learning_logs',
     'users',
+    #side apps
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,8 @@ STATIC_URL = '/static/'
 
 #my settings
 LOGIN_URL = 'users/login/'
+
+#django-bootstrap settings
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
